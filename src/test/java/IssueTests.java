@@ -28,7 +28,7 @@ public class IssueTests extends TestBase {
     @Test
     void withLambdaIssueSearchTest() {
         SelenideLogger.addListener("allure", new AllureSelenide());
-
+//noinspection CodeBlock2Expr
         step("Открываем главную страницу", () -> {
             open("");
         });
