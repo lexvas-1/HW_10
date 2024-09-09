@@ -1,5 +1,6 @@
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.exist;
@@ -14,6 +15,7 @@ public class IssueTests extends TestBase {
     private static final int ISSUE = 89;
 
     @Test
+    @DisplayName("Поиск Issue с листенером")
     void simpleSelenideIssueSearchTest() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         open("");
@@ -26,31 +28,33 @@ public class IssueTests extends TestBase {
     }
 
     @Test
+    @DisplayName("Поиск Issue с лямбда-шагами")
     void withLambdaIssueSearchTest() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         //noinspection CodeBlock2Expr
-        step("Открываем главную страницу", () -> {
+        step("Открыть главную страницу", () -> {
             open("");
         });
-        step("Ищем репозиторий" + REPO, () -> {
+        step("Найти репозиторий" + REPO, () -> {
             $("[data-target='qbsearch-input.inputButtonText']").click();
             $("#query-builder-test").click();
             $("#query-builder-test").setValue(REPO).pressEnter();
         });
         //noinspection CodeBlock2Expr
-        step("Открываем репозиторий" + REPO, () -> {
+        step("Открывать репозиторий" + REPO, () -> {
             $(linkText(REPO)).click();
         });
         //noinspection CodeBlock2Expr
-        step("Открываем таб Issues", () -> {
+        step("Открыть таб Issues", () -> {
             $("#issues-tab").click();
         });
-        step("Проверяем наличие Issue с номером " + ISSUE, () -> {
+        step("Проверить наличие Issue с номером " + ISSUE, () -> {
             $(withText("#" + ISSUE)).should(exist);
         });
     }
 
     @Test
+    @DisplayName("Поиск Issue с page-object")
     void withAnnotatedStepIssueSearchTest() {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
