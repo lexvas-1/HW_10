@@ -24,11 +24,11 @@ public class IssueTests extends TestBase {
         $("#issues-tab").click();
         $(withText("#89")).should(exist);
     }
-
+    //noinspection CodeBlock2Expr
     @Test
     void withLambdaIssueSearchTest() {
         SelenideLogger.addListener("allure", new AllureSelenide());
-//noinspection CodeBlock2Expr
+
         step("Открываем главную страницу", () -> {
             open("");
         });
