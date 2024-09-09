@@ -28,7 +28,7 @@ public class IssueTests extends TestBase {
     @Test
     void withLambdaIssueSearchTest() {
         SelenideLogger.addListener("allure", new AllureSelenide());
-//noinspection CodeBlock2Expr
+        //noinspection CodeBlock2Expr
         step("Открываем главную страницу", () -> {
             open("");
         });
@@ -37,9 +37,11 @@ public class IssueTests extends TestBase {
             $("#query-builder-test").click();
             $("#query-builder-test").setValue(REPO).pressEnter();
         });
+        //noinspection CodeBlock2Expr
         step("Открываем репозиторий" + REPO, () -> {
             $(linkText(REPO)).click();
         });
+        //noinspection CodeBlock2Expr
         step("Открываем таб Issues", () -> {
             $("#issues-tab").click();
         });
